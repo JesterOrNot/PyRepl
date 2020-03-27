@@ -19,8 +19,8 @@ impl CommandLineTool for MyTool {
         }
     }
     fn syntax_highlight(string: &str) {
-        gen_lexer!(TheLexer, (Foo, "foo"), (Bar, "bar"));
-        gen_parse!(TheLexer, parser, (Foo, Color::Red), (Bar, Color::Green));
+        gen_lexer!(TheLexer, (KeyWord, "import|print|lambda|if|for|async|await|assert|while|with|raise|return|try|pass|def|del|from|global|nonlocal|not"), (Integer, "[0-9]+"), (Operator, r"==|\*\*|\+|-|/|%"));
+        gen_parse!(TheLexer, parser, (KeyWord, Color::Red), (Integer, Color::Green), (Operator, Color::Yellow));
         parser(TheLexer::lexer(string));
     }
 }
